@@ -9,7 +9,30 @@ const thoughtController = {
             console.log(err);
             res.status(400).json(err);
         })
+    },
+
+    //create a thought
+    createThought({ params, body }, res) {
+        Thought.create(body)
+        .then(({ _id }) => {
+            return User.findOneAndUpdate(
+                {username: body.username },
+                {$push: { thoughts: _id } },
+                {new: true}
+            );
+        }).then(dbUserData => {
+            //if no user 404
+            if(!dbUserData) {
+                res.status(404).json({ message: 'no user with this id'});
+                return
+            }
+            res.json(dbUserData)
+        }).catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+          });
     }
+
 }
 
 module.exports = thoughtController;
