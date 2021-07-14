@@ -12,16 +12,16 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    thoughts: [
-        {
-            ref: 'Thought'
-        }
-    ],
-    friends: [
-        {
-            ref: 'User'
-        }
-    ]   
+    // thoughts: [
+    //     {
+    //         ref: 'Thought'
+    //     }
+    // ],
+    // friends: [
+    //     {
+    //         ref: 'User'
+    //     }
+    // ]   
     },
     {
         toJSON: {
@@ -31,7 +31,7 @@ const userSchema = new Schema({
     }
 );
 
-userSchema.virtual('friendCouint').get(function() {
+userSchema.virtual('friendCount').get(function() {
     return this.friends.length
 });
 
