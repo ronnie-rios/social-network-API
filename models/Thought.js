@@ -1,4 +1,24 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types} = require('mongoose');
+
+const reactionSchema = new Schema({
+    reactionId: {
+        type: Schema.Types.ObjectId,
+        default: new Types.ObjectId
+    },
+    reactionBody: {
+        type: String,
+        required: true,
+        maxlength: 280
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+})
 
 const thoughtSchema = new Schema({
     thoughtText: {
@@ -15,7 +35,8 @@ const thoughtSchema = new Schema({
         type: String,
         required: true,
         ref: 'User'
-    }
+    },
+    Reactions: [reactionSchema]
    
     },
     {
@@ -26,10 +47,8 @@ const thoughtSchema = new Schema({
     }
 );
 
-// thoughtSchema.virtual('friendCount').get(function() {
-//     return this.friends.length
-// });
 
-const User = model('User', thoughtSchema);
 
-module.exports = User;
+const Thought = model('Thought', thoughtSchema);
+
+module.exports = Thought;
