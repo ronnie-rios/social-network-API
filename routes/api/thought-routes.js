@@ -24,6 +24,7 @@ router.route('/')
 router.route('/:thoughtId/reactions')
     .post(createReaction)
 
+// /api/thoughts/:thoughtId/reactionId
 router.route('/:thoughtId/:reactionId')
     .delete(deleteReaction)
 
