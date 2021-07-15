@@ -20,13 +20,12 @@ const thoughtController = {
                 {$push: { thoughts: _id } },
                 {new: true}
             );
-        }).then(dbUserData => {
-            //if no user 404
-            if(!dbUserData) {
+        }).then(dbThoughtData => {
+            if(!dbThoughtData) {
                 res.status(404).json({ message: 'no user with this id'});
                 return
             }
-            res.json(dbUserData)
+            res.json(dbThoughtData)
         }).catch(err => {
             console.log(err);
             res.status(400).json(err);
@@ -77,7 +76,10 @@ const thoughtController = {
             console.log(err);
             res.status(400).json(err);
           });
-    }
+    },
+
+    //creates a reaction
+    // deletes a reaction
 }
 
 module.exports = thoughtController;
