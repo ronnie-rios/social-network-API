@@ -32,15 +32,44 @@ const thoughtController = {
             res.status(400).json(err);
           });
     },
+    //get a thought by id
+    getThoughtById({ params }, res) {
+        Thought.findOne({ _id: params.id })
+        .then(dbThoughtData => {
+            if(!dbThoughtData) {
+                res.status(404).json({ message: 'no thought with this id'});
+                return
+            }
+            res.json(dbThoughtData)
+        }).catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+          });
 
+    },
     //update a thought by id
-
+    updateThought({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.id},
+            body,
+            { new: true }
+        ).then(dbThoughtData => {
+            if(!dbThoughtData) {
+                res.status(404).json({ message: 'no thought with this id'});
+                return
+            }
+            res.json(dbThoughtData)
+        }).catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+          });
+    },
     //delete thought by id
     deleteThought({ params, body}, res) {
         Thought.findOneAndDelete({ _id: params.id })
         .then(dbThoughtData => {
             if(!dbThoughtData) {
-                res.status(404).json({ message: 'no user with this id'});
+                res.status(404).json({ message: 'no thought with this id'});
                 return
             }
             res.json(dbThoughtData)
