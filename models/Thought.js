@@ -36,7 +36,7 @@ const thoughtSchema = new Schema({
         required: true,
         ref: 'User'
     },
-    Reactions: [reactionSchema]
+    reactions: [reactionSchema]
    
     },
     {

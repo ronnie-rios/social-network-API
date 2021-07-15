@@ -17,7 +17,7 @@ const userController = {
             //if no user 404
             if(!dbUserData) {
                 res.status(404).json({ message: 'no user with this id'});
-                return
+                return;
             }
             res.json(dbUserData)
         }).catch(err => {
@@ -41,7 +41,7 @@ const userController = {
             //if no user 404
             if(!dbUserData) {
                 res.status(404).json({ message: 'no user with this id'});
-                return
+                return;
             }
             res.json(dbUserData)
         }).catch(err => {
@@ -57,7 +57,7 @@ const userController = {
             //if no user 404
             if(!dbUserData) {
                 res.status(404).json({ message: 'no user with this id'});
-                return
+                return;
             }
             res.json(dbUserData)
         }).catch(err => {
@@ -74,7 +74,7 @@ const userController = {
             ).then(dbUserData => {
                 if(!dbUserData) {
                     res.status(404).json({ message: 'no user with this id'});
-                    return
+                    return;
                 }
                 res.json(dbUserData)
             }).catch(err => {
